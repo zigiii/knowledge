@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alice.projectKnowledge.dao.KnowledgePointDao">
+	<resultMap type="CoreKnowledgePoint" id="knowledgePointMap">
+		<id column="POINT_ID" property="pointId" javaType="java.lang.Integer" />
+		<result column="POINT_NAME" property="pointName" javaType="java.lang.String" />
+		<result column="POINT_SORT" property="pointSort" javaType="java.lang.Integer" />
+		<result column="KNOWLEDGE_CODE" property="knowledgeCode" javaType="java.lang.String" />
+	</resultMap>
+	
+	<select id="queryKnowledgePointList" resultMap="knowledgePointMap">
+		SELECT
+			POINT_ID,
+			POINT_NAME,
+			POINT_SORT,
+			KNOWLEDGE_CODE
+		FROM
+			core_knowledge_point
+		WHERE
+			KNOWLEDGE_CODE = #{knowledgeCode,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

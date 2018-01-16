@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alice.projectKnowledge.dao.SampleDao">
+	<resultMap type="CoreSample" id="sampleMap">
+		<id column="SAMPLE_ID" property="sampleId" javaType="java.lang.Integer" />
+		<result column="SAMPLE_TITLE" property="sampleTitle" javaType="java.lang.String" />
+		<result column="SAMPLE_CONTENT" property="sampleContent" javaType="java.lang.String" />
+		<result column="SAMPLE_UNSCRAMBLE" property="sampleUnscramble" javaType="java.lang.String" />
+		<result column="POINT_ID" property="pointId" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<select id="querySampleList" resultMap="sampleMap">
+		SELECT
+			SAMPLE_ID,
+			SAMPLE_TITLE,
+			SAMPLE_CONTENT,
+			SAMPLE_UNSCRAMBLE,
+			POINT_ID
+		FROM
+			core_sample
+		WHERE
+			POINT_ID = #{pointId,jdbcType=INTEGER}
+	</select>
+
+	
+</mapper>

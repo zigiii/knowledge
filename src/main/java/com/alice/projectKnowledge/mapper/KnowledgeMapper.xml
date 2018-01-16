@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alice.projectKnowledge.dao.KnowledgeDao">
+	<resultMap type="CoreKnowledge" id="knowledgeMap">
+		<id column="KNOWLEDGE_ID" property="knowledgeId" javaType="java.lang.Integer" />
+		<result column="KNOWLEDGE_TITLE" property="konwledgeTitle" javaType="java.lang.String" />
+		<result column="KNOWLEDGE_DEFINITION" property="knowledgeDefinition" javaType="java.lang.String" />
+		<result column="KNOWLEDGE_CODE" property="knowledgeCode" javaType="java.lang.String" />
+	</resultMap>
+	
+	<select id="queryKnowledge" resultMap="knowledgeMap">
+		SELECT
+			KNOWLEDGE_ID,
+			KNOWLEDGE_TITLE,
+			KNOWLEDGE_DEFINITION,
+			KNOWLEDGE_CODE
+		FROM
+			core_knowledge
+		WHERE
+			KNOWLEDGE_ID = #{knowledgeId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="queryKnowledgeByCode" resultMap="knowledgeMap">
+		SELECT
+			KNOWLEDGE_ID,
+			KNOWLEDGE_TITLE,
+			KNOWLEDGE_DEFINITION,
+			KNOWLEDGE_CODE
+		FROM
+			core_knowledge
+		WHERE
+			KNOWLEDGE_CODE = #{knowledgeCode,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

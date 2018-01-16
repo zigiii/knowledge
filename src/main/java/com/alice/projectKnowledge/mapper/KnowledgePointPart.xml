@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alice.projectKnowledge.dao.KnowledgePointPartDao">
+	<resultMap type="CoreKnowledgePointPart" id="knowledgePointPartMap">
+		<id column="PART_ID" property="partId" javaType="java.lang.Integer" />
+		<result column="PART_NAME" property="partName" javaType="java.lang.String" />
+		<result column="PART_SHOW_TYPE" property="partShowType" javaType="java.lang.String" />
+		<result column="POINT_ID" property="pointId" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<select id="queryKnowledgePointPartList" resultMap="knowledgePointPartMap">
+		SELECT
+			PART_ID,
+			PART_NAME,
+			PART_SHOW_TYPE,
+			POINT_ID
+		FROM
+			core_knowledge_point_part
+		WHERE
+			POINT_ID = #{pointId,jdbcType=INTEGER}
+	</select>
+
+</mapper>

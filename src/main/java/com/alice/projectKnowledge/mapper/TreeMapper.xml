@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alice.projectKnowledge.dao.TreeDao">
+	<resultMap type="CoreTree" id="treeMap">
+		<id column="NODE_ID" property="nodeId" javaType="java.lang.Integer" />
+		<result column="PARENT_ID" property="parentId" javaType="java.lang.Integer" />
+		<result column="NODE_NAME" property="nodeName" javaType="java.lang.String" />
+		<result column="KNOWLEDGE_ID" property="knowledgeId" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<select id="queryNodeList" resultMap="treeMap">
+		SELECT
+			NODE_ID,
+			PARENT_ID,
+			NODE_NAME,
+			KNOWLEDGE_ID
+		FROM
+			core_tree
+		WHERE
+			PARENT_ID = #{parentId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="queryNode" resultMap="treeMap">
+		SELECT
+			NODE_ID,
+			PARENT_ID,
+			NODE_NAME,
+			KNOWLEDGE_ID
+		FROM
+			core_tree
+		WHERE
+			NODE_ID = #{nodeId,jdbcType=INTEGER}
+	</select>
+	
+	
+</mapper>

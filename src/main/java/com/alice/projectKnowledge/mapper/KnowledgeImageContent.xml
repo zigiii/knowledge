@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alice.projectKnowledge.dao.KnowledgeImageContentDao">
+	<resultMap type="CoreKnowledgeImageContent" id="knowledgeImageContentMap">
+		<id column="IMAGE_CONTENT_ID" property="imageContentId" javaType="java.lang.Integer" />
+		<result column="IMAGE_TITLE" property="imageTitle" javaType="java.lang.String" />
+		<result column="IMAGE_CONTENT" property="imageContent" javaType="java.lang.String" />
+		<result column="IMAGE_PATH" property="imagePath" javaType="java.lang.String" />
+		<result column="IMAGE_FILE" property="imageFile" javaType="java.lang.String" />
+		<result column="IMAGE_SORT" property="imageSort" javaType="java.lang.Integer" />
+		<result column="PART_ID" property="partId" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<select id="queryKnowledgeImageContentList" resultMap="knowledgeImageContentMap">
+		SELECT
+			IMAGE_CONTENT_ID,
+			IMAGE_TITLE,
+			IMAGE_CONTENT,
+			IMAGE_PATH,
+			IMAGE_FILE,
+			IMAGE_SORT,
+			PART_ID
+		FROM
+			core_knowledge_image_content
+		WHERE
+			PART_ID = #{partId,jdbcType=INTEGER}
+		ORDER BY IMAGE_SORT
+	</select>
+
+</mapper>
